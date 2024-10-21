@@ -8,6 +8,12 @@ interface TimeLeft {
 }
 
 export const useCountDownTimer = (targetTime: number): TimeLeft => {
+  const [timeLeft, setTimeLeft] = useState<TimeLeft>({
+    days: 0,
+    hours: 0,
+    minutes: 0,
+    seconds: 0,
+  });
   const calculateTimeLeft = (): TimeLeft => {
     const now = new Date().getTime();
     const difference = targetTime - now;
@@ -24,15 +30,13 @@ export const useCountDownTimer = (targetTime: number): TimeLeft => {
     }
   };
 
-  const [timeLeft, setTimeLeft] = useState<TimeLeft>(calculateTimeLeft);
-
   useEffect(() => {
     const intervalId = setInterval(() => {
       setTimeLeft(calculateTimeLeft);
     }, 1000);
 
     return () => clearInterval(intervalId);
-  }, [targetTime]);
+  }, [targetTime, calculateTimeLeft]);
 
   return timeLeft;
 };
