@@ -1,3 +1,7 @@
+"use client";
+
+import TimerSection from "@/app/components/TimerSection";
+
 const contents = {
   brideName: "Sabrina Amadea",
   brideNickName: "Dea",
@@ -66,16 +70,6 @@ const LandingSection = () => {
   );
 };
 
-const TimerSection = () => {
-  return (
-    <section>
-      <span>2 days</span>
-      <span> 15 hours</span>
-      <span> 38 minutes</span>
-    </section>
-  );
-};
-
 const EventInfoSection = () => {
   return (
     <section>
@@ -84,6 +78,12 @@ const EventInfoSection = () => {
         <p>{contents.event.holyMatrimony.location}</p>
         <p>{contents.event.holyMatrimony.date}</p>
         <p>{contents.event.holyMatrimony.time}</p>
+      </div>
+      <div>
+        <h2>Wedding Lunch</h2>
+        <p>{contents.event.wedding.lunch.location}</p>
+        <p>{contents.event.wedding.date}</p>
+        <p>{contents.event.wedding.lunch.time.noon}</p>
       </div>
     </section>
   );
@@ -103,6 +103,10 @@ const WishesSection = () => {
     <section>
       <div id="container">
         <h2>Drop your wishes for their journey</h2>
+        <form id="wishes-form">
+          <input type="text" placeholder="write your wish for them here..." />
+          <input type="submit" value="Send them your wish" />
+        </form>
         <div id="wish_container">
           <h3>Posted Name</h3>
           <p>Wishes</p>
@@ -127,7 +131,7 @@ const DeanswertorafsprayerAtria1Page = () => {
       <InvitationNavbar />
       <div>
         <LandingSection />
-        <TimerSection />
+        <TimerSection targetDate={contents.event.wedding.date} />
         <EventInfoSection />
         <RSVPSection />
         <WishesSection />
