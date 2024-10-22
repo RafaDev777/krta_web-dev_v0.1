@@ -1,56 +1,28 @@
-// "use client";
-// import { useCountDownTimer } from "@/utils/useCountDownTimer";
-// interface TimerSectionProps {
-//   targetDate: string;
-// }
-// const TimerSection = ({ targetDate }: TimerSectionProps) => {
-//   const { days, hours, minutes, seconds } = useCountDownTimer(
-//     new Date(targetDate).getTime(),
-//   );
-//   return (
-//     <section>
-//       <span>{days} days</span>
-//       <span>{hours} hours</span>
-//       <span>{minutes} minutes</span>
-//       <span>{seconds} seconds</span>
-//     </section>
-//   );
-// };
-// export default TimerSection;
-
 "use client";
-import { useEffect, useState } from "react";
-import { useCountDownTimer } from "@/utils/useCountDownTimer";
-
+import useCountDown from "@/hooks/useCountDownTimer";
 interface TimerSectionProps {
   targetDate: string;
 }
-
-const TimerSection: React.FC<TimerSectionProps> = ({ targetDate }) => {
-  const [isClient, setIsClient] = useState(false); // Track whether we are on the client
-
-  // Make sure the component only renders after it's mounted on the client
-  useEffect(() => {
-    setIsClient(true);
-  }, []);
-
-  if (!isClient) {
-    // Return an empty component for the server-rendered version
-    return null;
-  }
-
-  const { days, hours, minutes, seconds } = useCountDownTimer(
-    new Date(targetDate).getTime(),
-  );
-
+const TimerSection = ({ targetDate }: TimerSectionProps) => {
+  const { days, hours, minutes, seconds } = useCountDown(new Date(targetDate));
   return (
-    <section>
-      <span>{days} days </span>
-      <span>{hours} hours </span>
-      <span>{minutes} minutes </span>
-      <span>{seconds} seconds</span>
+    <section
+      className="min-w-svw min-h-24 flex items-center justify-center bg-blue-400"
+      id="count-down-section"
+    >
+      <div className="container flex flex-col items-center justify-center bg-blue-200">
+        <h1 className="">Test</h1>
+        <div className="flex flex-row gap-5">
+          <p>{days} </p>
+          <p>:</p>
+          <p> {hours} </p>
+          <p>:</p>
+          <p> {minutes} </p>
+          <p>:</p>
+          <p> {seconds}</p>
+        </div>
+      </div>
     </section>
   );
 };
-
 export default TimerSection;

@@ -72,43 +72,64 @@ const LandingSection = () => {
 
 const EventInfoSection = () => {
   return (
-    <section>
-      <div>
-        <h2>Holy Matrimony</h2>
-        <p>{contents.event.holyMatrimony.location}</p>
-        <p>{contents.event.holyMatrimony.date}</p>
-        <p>{contents.event.holyMatrimony.time}</p>
-      </div>
-      <div>
-        <h2>Wedding Lunch</h2>
-        <p>{contents.event.wedding.lunch.location}</p>
-        <p>{contents.event.wedding.date}</p>
-        <p>{contents.event.wedding.lunch.time.noon}</p>
+    <section className="min-w-svw flex items-center justify-center">
+      <div className="flex flex-col container items-center justify-center gap-10">
+        <h2>Location</h2>
+        <div className="flex flex-row justify-between w-full px-10">
+          <div className="flex flex-col items-center justify-center">
+            <h2>Holy Matrimony</h2>
+            <p>{contents.event.holyMatrimony.location}</p>
+            <p>{contents.event.holyMatrimony.date}</p>
+            <p>{contents.event.holyMatrimony.time}</p>
+          </div>
+          <div className="flex flex-col items-center justify-center">
+            <h2>Wedding Lunch</h2>
+            <p>{contents.event.wedding.lunch.location}</p>
+            <p>{contents.event.wedding.date}</p>
+            <p>{contents.event.wedding.lunch.time.noon}</p>
+          </div>
+        </div>
       </div>
     </section>
   );
 };
 const RSVPSection = () => {
   return (
-    <section>
-      <form id="rsvp-form">
-        <input type="text" placeholder="name" />
-        <input type="text" placeholder="attend?" />
-      </form>
+    <section className="min-svw min-h-screen flex justify-center items-center align-middle">
+      <div className="container flex flex-col justify-center items-center">
+        <h2>RSVP</h2>
+        <p>
+          We can&apos;t wait to celebrate our special day with you, and your
+          presence means the world to us! Please let us know if you will be able
+          to join in the joy and festivities.
+        </p>
+        <form id="rsvp-form" className="">
+          <label htmlFor="guest-name">Name</label>
+          <input
+            id="guest-name"
+            name="guest-name"
+            type="text"
+            placeholder="name"
+          />
+          <p>Will you attending ?</p>
+          <input type="checkbox" id="attend" name="attend" value="yes attend" />
+          <label htmlFor="attend">yes we will</label>
+        </form>
+      </div>
     </section>
   );
 };
 const WishesSection = () => {
   return (
-    <section>
+    <section className="min-w-svw flex flex-col justify-center items-center align-middle">
       <div id="container">
         <h2>Drop your wishes for their journey</h2>
         <form id="wishes-form">
           <input type="text" placeholder="write your wish for them here..." />
-          <input type="submit" value="Send them your wish" />
+          <button>Post</button>
         </form>
         <div id="wish_container">
-          <h3>Posted Name</h3>
+          <h3 className="bold">Posted Name</h3>
           <p>Wishes</p>
         </div>
       </div>
