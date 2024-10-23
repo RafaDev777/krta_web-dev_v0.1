@@ -114,11 +114,26 @@ const RSVPSection = () => {
           <p>Will you attending ?</p>
           <input type="checkbox" id="attend" name="attend" value="yes attend" />
           <label htmlFor="attend">yes we will</label>
+          <p>How many person will attend?</p>
+          <label htmlFor="aduls">Adults</label>
+          <input type="text" id="adults" name="adults" />
+          <label htmlFor="kids">Kids</label>
+          <input type="text" id="kids" name="kids" />
         </form>
       </div>
     </section>
   );
 };
+
+const WishCard = () => {
+  return (
+    <div id="wish_card">
+      <h3 className="bold">Posted Name</h3>
+      <p>Wish</p>
+    </div>
+  );
+};
+
 const WishesSection = () => {
   return (
     <section className="min-w-svw flex flex-col justify-center items-center align-middle">
@@ -128,14 +143,12 @@ const WishesSection = () => {
           <input type="text" placeholder="write your wish for them here..." />
           <button>Post</button>
         </form>
-        <div id="wish_container">
-          <h3 className="bold">Posted Name</h3>
-          <p>Wishes</p>
-        </div>
+        <WishCard />
       </div>
     </section>
   );
 };
+
 const GallerySection = () => {
   return (
     <section>
