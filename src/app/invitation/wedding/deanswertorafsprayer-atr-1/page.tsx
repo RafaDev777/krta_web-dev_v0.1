@@ -1,6 +1,17 @@
 "use client";
 
 import TimerSection from "@/app/components/TimerSection";
+import { Updock, Bodoni_Moda, Gowun_Dodum } from "next/font/google";
+
+const script = Updock({ weight: "400", subsets: ["latin"] });
+const serif = Bodoni_Moda({
+  weight: "400",
+  subsets: ["latin"],
+});
+const sans = Gowun_Dodum({
+  weight: "400",
+  subsets: ["latin"],
+});
 
 const contents = {
   brideName: "Sabrina Amadea",
@@ -38,11 +49,21 @@ const contents = {
       },
     },
   },
+  images: {
+    gallery: [
+      "/wedding/deanswertorafsprayer/test1.webp",
+      "/wedding/deanswertorafsprayer/test2.webp",
+      "/wedding/deanswertorafsprayer/test3.webp",
+      "/wedding/deanswertorafsprayer/test4.webp",
+      "/wedding/deanswertorafsprayer/test5.webp",
+      "/wedding/deanswertorafsprayer/test6.webp",
+    ],
+  },
 };
 
 const InvitationNavbar = () => {
   return (
-    <div className="w-svw flex flex-row justify-center items-center bg-blue-200 min-h-14">
+    <div className="min-w-svw flex flex-row justify-center items-center bg-blue-200 min-h-14">
       <div className="flex flex-row max-h-10 justify-between container bg-blue-400 px-5">
         <div>Logo</div>
         <ul className="flex flex-row gap-5">
@@ -58,13 +79,29 @@ const InvitationNavbar = () => {
 
 const LandingSection = () => {
   return (
-    <section className="min-h-screen min-w-svw flex justify-center items-center">
-      <div className="min-h-80  container flex flex-col  items-center justify-center bg-blue-400">
-        <h2>
-          {contents.brideNickName} & {contents.groomNickName}
-        </h2>
-        <h3>We&apos;re getting married</h3>
-        <h3>{contents.event.wedding.date}</h3>
+    <section
+      style={{
+        backgroundImage: `url("/wedding/deanswertorafsprayer/test1.webp")`,
+        backgroundRepeat: "no-repeat",
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+      }}
+      className="min-h-screen min-w-svw flex justify-center items-center"
+    >
+      <div className="overlay bg-black/50 min-h-screen min-w-full flex justify-center items-center">
+        <div className="min-h-80  container flex flex-col  items-center justify-cente">
+          <h2 className={`${script.className} text-9xl mb-10`}>
+            {contents.brideNickName}{" "}
+            <span className={`${script.className} text-9xl`}>&</span>{" "}
+            {contents.groomNickName}
+          </h2>
+          <h3 className={`${sans.className} text-xl`}>
+            We&apos;re getting married
+          </h3>
+          <h3 className={`${sans.className} text-xl`}>
+            {contents.event.wedding.date}
+          </h3>
+        </div>
       </div>
     </section>
   );
@@ -72,18 +109,22 @@ const LandingSection = () => {
 
 const EventInfoSection = () => {
   return (
-    <section className="min-w-svw flex items-center justify-center">
+    <section className="min-w-svw min-h-screen flex align-middle items-center justify-center">
       <div className="flex flex-col container items-center justify-center gap-10">
-        <h2>Location</h2>
-        <div className="flex flex-row justify-between w-full px-10">
+        <h2 className={`${serif.className} text-3xl mb-10`}>Location</h2>
+        <div className=" w-full columns-2">
           <div className="flex flex-col items-center justify-center">
-            <h2>Holy Matrimony</h2>
+            <h2 className={`${serif.className} text-xl mb-10`}>
+              Holy Matrimony
+            </h2>
             <p>{contents.event.holyMatrimony.location}</p>
             <p>{contents.event.holyMatrimony.date}</p>
             <p>{contents.event.holyMatrimony.time}</p>
           </div>
           <div className="flex flex-col items-center justify-center">
-            <h2>Wedding Lunch</h2>
+            <h2 className={`${serif.className} text-xl mb-10`}>
+              Wedding Lunch
+            </h2>
             <p>{contents.event.wedding.lunch.location}</p>
             <p>{contents.event.wedding.date}</p>
             <p>{contents.event.wedding.lunch.time.noon}</p>
@@ -93,31 +134,46 @@ const EventInfoSection = () => {
     </section>
   );
 };
-const RSVPSection = () => {
+const StorySection = () => {
   return (
     <section className="min-svw min-h-screen flex justify-center items-center align-middle">
       <div className="container flex flex-col justify-center items-center">
-        <h2>RSVP</h2>
+        <h2 className={`${serif.className} text-3xl mb-10`}>Our Story</h2>
+      </div>
+    </section>
+  );
+};
+const RSVPSection = () => {
+  return (
+    <section className="min-svw min-h-screen flex justify-center items-center align-middle py-20">
+      <div className="container flex flex-col justify-center items-center ">
+        <h2 className={`${serif.className} mb-10 text-3xl`}>RSVP</h2>
         <p>
           We can&apos;t wait to celebrate our special day with you, and your
           presence means the world to us! Please let us know if you will be able
           to join in the joy and festivities.
         </p>
-        <form id="rsvp-form" className="">
+        <form id="rsvp-form" className="mt-10">
           <label htmlFor="guest-name">Name</label>
+          <br />
           <input
             id="guest-name"
             name="guest-name"
             type="text"
             placeholder="name"
           />
-          <p>Will you attending ?</p>
+          <p>Will you be attending ?</p>
           <input type="checkbox" id="attend" name="attend" value="yes attend" />
           <label htmlFor="attend">yes we will</label>
           <p>How many person will attend?</p>
-          <label htmlFor="aduls">Adults</label>
+          <label htmlFor="adults">
+            Adults <br />
+          </label>
           <input type="text" id="adults" name="adults" />
-          <label htmlFor="kids">Kids</label>
+          <br />
+          <label htmlFor="kids">
+            Kids <br />
+          </label>
           <input type="text" id="kids" name="kids" />
         </form>
       </div>
@@ -138,7 +194,9 @@ const WishesSection = () => {
   return (
     <section className="min-w-svw flex flex-col justify-center items-center align-middle">
       <div id="container">
-        <h2>Drop your wishes for their journey</h2>
+        <h2 className={`${serif.className} text-3xl mb-10`}>
+          Drop your wishes for their journey
+        </h2>
         <form id="wishes-form">
           <input type="text" placeholder="write your wish for them here..." />
           <button>Post</button>
@@ -149,11 +207,25 @@ const WishesSection = () => {
   );
 };
 
+const GalleryImageCard = ({ dir }: { dir: string }) => {
+  return (
+    <>
+      <div className="rounded-xl overflow-hidden">
+        <img src={dir} alt={dir} />
+      </div>
+    </>
+  );
+};
 const GallerySection = () => {
   return (
-    <section>
-      <div>
-        <img alt="" src="" />
+    <section className="items-center justify-center flex flex-col min-h-screen align-middle py-20">
+      <div className="container flex flex-col justify-center items-center align-middle ">
+        <h2 className={`${serif.className} text-3xl mb-10`}>Gallery</h2>
+        <div id="image-box" className="columns-3 space-y-3 gap-4">
+          {contents.images.gallery.map((dir, index) => {
+            return <GalleryImageCard key={index} dir={dir} />;
+          })}
+        </div>
       </div>
     </section>
   );
@@ -161,12 +233,13 @@ const GallerySection = () => {
 
 const DeanswertorafsprayerAtria1Page = () => {
   return (
-    <div>
+    <div className={`${sans.className}`}>
       <InvitationNavbar />
       <div>
         <LandingSection />
         <TimerSection targetDate={contents.event.wedding.date} />
         <EventInfoSection />
+        <StorySection />
         <RSVPSection />
         <WishesSection />
         <GallerySection />
