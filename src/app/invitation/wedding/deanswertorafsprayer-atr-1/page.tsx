@@ -177,7 +177,7 @@ const RSVPSection = () => {
           (<div>
           <p className="mt-5 mb-2">How many person will attend?</p>
           <input type="number" id="adults" name="adults"  placeholder="Adults?"className="max-w-14 mr-14 border-white border-b-2 bg-black"/>
-          <input type="number" id="kids" name="kids" placeholder="Kids?" className="max-w-14 bg-black border-white border-b-2"/>
+          <input type="nnumberr" id="kids" name="kids" placeholder="Kids?" className="max-w-14 bg-black border-white border-b-2"/>
           </div>)}
         </form>
       </div>
