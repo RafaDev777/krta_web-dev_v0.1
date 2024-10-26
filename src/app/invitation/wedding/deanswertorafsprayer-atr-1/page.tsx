@@ -1,7 +1,8 @@
 "use client";
-
+import { useState } from "react";
 import TimerSection from "@/app/components/TimerSection";
 import { Updock, Bodoni_Moda, Gowun_Dodum } from "next/font/google";
+
 
 const script = Updock({ weight: "400", subsets: ["latin"] });
 const serif = Bodoni_Moda({
@@ -65,7 +66,7 @@ const InvitationNavbar = () => {
   return (
     <div className="min-w-svw flex flex-row justify-center items-center bg-blue-200 min-h-14">
       <div className="flex flex-row max-h-10 justify-between container bg-blue-400 px-5">
-        <div>Logo</div>
+        <div>Logoo</div>
         <ul className="flex flex-row gap-5">
           <li>Date</li>
           <li>Location</li>
@@ -109,8 +110,8 @@ const LandingSection = () => {
 
 const EventInfoSection = () => {
   return (
-    <section className="min-w-svw min-h-screen flex align-middle items-center justify-center">
-      <div className="flex flex-col container items-center justify-center gap-10">
+    <section className="min-w-svw min-h-36 flex justify-center py-10">
+        <div className="flex flex-col container items-center justify-start gap-10 py-10">
         <h2 className={`${serif.className} text-3xl mb-10`}>Location</h2>
         <div className=" w-full columns-2">
           <div className="flex flex-col items-center justify-center">
@@ -144,37 +145,40 @@ const StorySection = () => {
   );
 };
 const RSVPSection = () => {
+  const [isAttending, setIsAttending]=useState(false)
+
   return (
-    <section className="min-svw min-h-screen flex justify-center items-center align-middle py-20">
-      <div className="container flex flex-col justify-center items-center ">
+    <section className="min-w-full min-h-screen flex justify-center items-center align-middle py-20">
+      <div className="container flex flex-col justify-center items-center max-w-[50%] text-center">
         <h2 className={`${serif.className} mb-10 text-3xl`}>RSVP</h2>
         <p>
           We can&apos;t wait to celebrate our special day with you, and your
           presence means the world to us! Please let us know if you will be able
           to join in the joy and festivities.
         </p>
-        <form id="rsvp-form" className="mt-10">
-          <label htmlFor="guest-name">Name</label>
+        <form id="rsvp-form" className="mt-10 min-w-fit">
+          {/* <label htmlFor="guest-name" className="text-center">Name</label> */}
           <br />
           <input
             id="guest-name"
             name="guest-name"
             type="text"
-            placeholder="name"
+            placeholder="Please Enter your full name"
+            className="min-w-80 border-white border-b-2 bg-black mb-2"
           />
+          <div className="flex flex-row justify-center">
           <p>Will you be attending ?</p>
-          <input type="checkbox" id="attend" name="attend" value="yes attend" />
-          <label htmlFor="attend">yes we will</label>
-          <p>How many person will attend?</p>
-          <label htmlFor="adults">
-            Adults <br />
-          </label>
-          <input type="text" id="adults" name="adults" />
-          <br />
-          <label htmlFor="kids">
-            Kids <br />
-          </label>
-          <input type="text" id="kids" name="kids" />
+            <input type="checkbox" id="attend" name="attend" className="ml-3 mr-1"
+              onChange={(e)=>setIsAttending(e.target.checked)}
+            />
+          <label htmlFor="attend">Yes I will!</label>
+          </div>
+          {isAttending && 
+          (<div>
+          <p className="mt-5 mb-2">How many person will attend?</p>
+          <input type="number" id="adults" name="adults"  placeholder="Adults?"className="max-w-14 mr-14 border-white border-b-2 bg-black"/>
+          <input type="number" id="kids" name="kids" placeholder="Kids?" className="max-w-14 bg-black border-white border-b-2"/>
+          </div>)}
         </form>
       </div>
     </section>
@@ -183,9 +187,9 @@ const RSVPSection = () => {
 
 const WishCard = () => {
   return (
-    <div id="wish_card">
-      <h3 className="bold">Posted Name</h3>
-      <p>Wish</p>
+    <div id="wish_card" className="max-w-[50%] bg-gray-600/10 rounded-lg p-5">
+      <h3 className="font-bold mb-5 text-center">Posted Name</h3>
+      <p className="text-gray-200 text-center">Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique quas laborum voluptatem exercitationem eveniet accusantium sunt autem sint. Asperiores quis ex optio suscipit nulla, animi praesentium doloribus earum fugiat veniam!</p>
     </div>
   );
 };
@@ -193,15 +197,19 @@ const WishCard = () => {
 const WishesSection = () => {
   return (
     <section className="min-w-svw flex flex-col justify-center items-center align-middle">
-      <div id="container">
+      <div className="container flex flex-col justify-center items-center ">
         <h2 className={`${serif.className} text-3xl mb-10`}>
           Drop your wishes for their journey
         </h2>
-        <form id="wishes-form">
-          <input type="text" placeholder="write your wish for them here..." />
-          <button>Post</button>
+        <form id="wishes-form" className="flex flex-col justify-center items-center mb-20">
+          <input type="text" placeholder="write your wish for them here..." className="min-w-80 bg-black border-white border-b-2"/>
+          <button className="bg-gray-600 mt-5 max-w-48 px-8 py-2 min-w-40 rounded-lg">Post</button>
         </form>
+        <div className="flex flex-col gap-5 justify-center items-center">
         <WishCard />
+        <WishCard />
+        <WishCard />
+        </div>
       </div>
     </section>
   );

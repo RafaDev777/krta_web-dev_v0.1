@@ -1,25 +1,32 @@
 "use client";
 import useCountDown from "@/hooks/useCountDownTimer";
+import { Bodoni_Moda } from "next/font/google"; 
 interface TimerSectionProps {
   targetDate: string;
 }
+
+const serif=Bodoni_Moda({
+  weight:'400',
+  subsets:['latin']
+})
 const TimerSection = ({ targetDate }: TimerSectionProps) => {
   const { days, hours, minutes, seconds } = useCountDown(new Date(targetDate));
   return (
     <section
-      className="min-w-svw min-h-24 flex items-center justify-center bg-blue-400"
+      className="min-w-full min-h-36 flex items-center py-20 justify-center"
       id="count-down-section"
     >
-      <div className="container flex flex-col items-center justify-center bg-blue-200">
-        <h1 className="">Test</h1>
-        <div className="flex flex-row gap-5">
+      <div className="container flex flex-col items-center justify-center">
+        <h2 className={`${serif.className} text-3xl mb-10`}>The Countdown</h2>
+        <div className="flex flex-row align-middle items-center gap-10 text-7xl">
           <p>{days} </p>
-          <p>:</p>
+          <p className="text-3xl">days</p>
           <p> {hours} </p>
-          <p>:</p>
+          <p className="text-3xl">hours</p>
           <p> {minutes} </p>
-          <p>:</p>
+          <p className="text-3xl">minutes</p>
           <p> {seconds}</p>
+          <p className="text-3xl">seconds</p>
         </div>
       </div>
     </section>
