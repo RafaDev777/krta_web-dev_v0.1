@@ -1,0 +1,41 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model Invitation {
+  id          String     @id @default(cuid())
+  slug        String     @unique
+  rsvpList    RsvpItem[]
+  commentList Comment[]
+}
+
+model RsvpItem {
+  id        String  @id @default(cuid())
+  name      String
+  attending Boolean
+  adults    Int 
+  kids      Int
+
+  invitationId String
+  invitation   Invitation @relation(fields: [invitationId], references: [id])
+}
+
+model Comment {
+  id          String @id @default(cuid())
+  commentator String
+  message     String
+
+  invitationId String
+  invitation   Invitation @relation(fields: [invitationId], references: [id])
+}

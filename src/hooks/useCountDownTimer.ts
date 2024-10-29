@@ -1,20 +1,19 @@
-import { useEffect, useState } from "react";
-import countDownTimer from "@/utils/countDownTimer";
+import { useEffect, useState } from 'react';
+import countDownTimer from '@/utils/countDownTimer';
 
 const useCountDown = (targetDate: Date) => {
-  const countDownDate = new Date(targetDate).getTime();
-  const [countDown, setCountDown] = useState(0);
+	const countDownDate = new Date(targetDate).getTime();
+	const [countDown, setCountDown] = useState(0);
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCountDown(countDownDate - new Date().getTime());
-      console.log("interval", interval);
-    }, 1000);
+	useEffect(() => {
+		const interval = setInterval(() => {
+			setCountDown(countDownDate - new Date().getTime());
+		}, 1000);
 
-    return () => clearInterval(interval);
-  }, [countDownDate]);
+		return () => clearInterval(interval);
+	}, [countDownDate]);
 
-  return countDownTimer(countDown);
+	return countDownTimer(countDown);
 };
 
 export default useCountDown;
